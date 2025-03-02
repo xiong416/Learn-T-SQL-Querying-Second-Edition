@@ -19,7 +19,7 @@ FROM Sales.SalesOrderHeader AS h
 INNER JOIN Sales.SalesOrderDetail AS d ON h.SalesOrderID = d.SalesOrderID 
 WHERE h.TotalDue > 1000;
 GO
-
+sp_help 'Sales.SalesOrderDetail'
 EXECUTE usp_GetSalesOrderDetailToDate '2014-3-28 00:00:00'
 GO
 

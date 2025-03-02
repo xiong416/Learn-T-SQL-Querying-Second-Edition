@@ -25,3 +25,19 @@ LEFT OUTER JOIN [Person].[PhoneNumberType] AS pnt
 ON RTRIM(LTRIM(pp.[PhoneNumberTypeID])) = RTRIM(LTRIM(pnt.[PhoneNumberTypeID])) 
 LEFT OUTER JOIN [Person].[EmailAddress] AS ea 
 ON RTRIM(LTRIM(p.[BusinessEntityID])) = RTRIM(LTRIM(ea.[BusinessEntityID])); 
+go
+
+select bea.* , ads.AddressLine1, ads.City
+from Person.BusinessEntityAddress bea
+inner join Person.Address ads on bea.AddressID = ads.AddressID
+where BusinessEntityID IN
+(select a.BusinessEntityID
+from 
+(
+	select BusinessEntityID, COUNT(*) as Cnt
+	from Person.BusinessEntityAddress
+	group by BusinessEntityID 
+	having COUNT(*) > 1
+) a
+)
+

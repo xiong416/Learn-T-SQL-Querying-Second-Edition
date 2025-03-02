@@ -41,6 +41,7 @@ END;
 
 SELECT EmployeeID, FirstName, LastName, JobTitle, RecursionLevel  
 FROM dbo.ufn_FindReports(25);  
+go
 
 CREATE OR ALTER FUNCTION dbo.ufn_FindReports_inline (@InEmpID int)  
 RETURNS TABLE 

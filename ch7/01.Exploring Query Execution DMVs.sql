@@ -20,7 +20,7 @@ WHERE session_id > 50
    AND status IN ('running', 'runnable', 'suspended');
 
 -- sys.dm_exec_sql_text
-SELECT r.session_id, r.start_time, s.program_name, r.status, r.st.text AS statement_text, r.statement_start_offset, r.statement_end_offset, r.database_id
+SELECT r.session_id, r.start_time, s.program_name, r.status, st.text AS statement_text, r.statement_start_offset, r.statement_end_offset, r.database_id
 FROM sys.dm_exec_requests r
 INNER JOIN sys.dm_exec_sessions s ON s.session_id = r.session_id
 CROSS APPLY sys.dm_exec_sql_text(r.sql_handle) st

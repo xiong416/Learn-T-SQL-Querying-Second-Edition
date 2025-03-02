@@ -1,0 +1,2 @@
+dbcc freeprocache
+dbcc freesystemcache
